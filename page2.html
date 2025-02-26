@@ -1,0 +1,2039 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Periodic Table Calculator</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap');
+
+       /* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-image: url("https://i.postimg.cc/wM83BXPX/7102cb67-ca5a-4529-a835-9d5fe892e2c1.png");
+    background-color: #2a2a29;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+h1 {
+    font-family: 'Orbitron', sans-serif;
+    text-align: center;
+    color: #faa405;
+    font-size: 4.8rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+    text-shadow: 0 0 10px #f8b50a, 0 0 20px #fba30b;
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+    0% { text-shadow: 0 0 10px gold, 0 0 20px #bdb4a4; }
+    100% { text-shadow: 0 0 10px gold, 0 0 40px #bdb4a4; }
+}
+
+.intro-section p {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #e0e0e0;
+    line-height: 1.8;
+}
+.periodic-table-image img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.controls button {
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #f7a305;
+    background: #262625;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.3s ease, color 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.controls button:hover {
+    color: #262625;
+    transform: translateY(-3px);
+    background: linear-gradient(135deg, #ffcc00, #ff9900);
+    box-shadow: 0 0 20px 5px rgba(255, 215, 0, 0.8);
+}
+
+.controls button:active {
+    transform: translateY(0);
+    box-shadow: 0 0 15px 3px rgba(255, 215, 0, 0.6);
+}
+
+.output-section {
+    margin-top: 20px;
+    padding: 30px;
+    background: rgba(9, 9, 9, 0.7);
+    border-radius: 10px;
+    font-size: 1.1rem;
+    color: #ffffff;
+    border: 1px solid rgba(249, 172, 6, 0.664);
+    backdrop-filter: blur(5px);
+    transition: box-shadow 0.3s ease;
+}
+
+.output-section:hover {
+    box-shadow: 0 8px 16px rgba(247, 163, 5);
+}
+
+.key-features {
+    margin-top: 30px;
+}
+
+.key-features p {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    width: auto;
+    font-size: 1.2rem;
+    color: #f7a305;
+    font-weight: 600;
+    text-shadow: 0 0 10px #26241f, 0 0 20px #423f39;
+    margin-bottom: 15px;
+}
+
+.key-features ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.key-features li {
+    margin-bottom: 10px;
+    padding: 15px;
+    background: rgba(15, 14, 14, 0.1);
+    border-radius: 10px;
+    font-size: 1rem;
+    color: #e0e0e0;
+    border-left: 4px solid #f7a305;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.key-features li:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 6px rgba(247, 163, 5);
+}
+
+/* Footer Styles */
+footer {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #e0e0e0;
+}
+
+footer a {
+    color: #f7a305;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #ffcc00;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 3.5rem;
+    }
+
+    .intro-section p {
+        font-size: 1rem;
+    }
+
+    .controls {
+        gap: 10px;
+    }
+
+    .controls button {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+
+    .output-section {
+        padding: 20px;
+        font-size: 1rem;
+    }
+
+    .key-features p {
+        font-size: 1.1rem;
+    }
+
+    .key-features li {
+        font-size: 0.9rem;
+    }
+
+    footer {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    .intro-section p {
+        font-size: 0.9rem;
+    }
+
+    .controls {
+        gap: 8px;
+    }
+
+    .controls button {
+        padding: 8px 16px;
+        font-size: 0.8rem;
+    }
+
+    .output-section {
+        padding: 15px;
+        font-size: 0.9rem;
+    }
+
+    .key-features p {
+        font-size: 1rem;
+    }
+
+    .key-features li {
+        font-size: 0.8rem;
+    }
+
+    footer {
+        font-size: 0.7rem;
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <section class="intro-section">
+            <h1>Periodic Table Calculator</h1>
+            <p>
+                Welcome to the Periodic Table Calculator – an all-in-one tool for exploring elements, analyzing properties, and performing chemical calculations. Perfect for students, educators, and enthusiasts, it makes chemistry simple and efficient!
+            </p>
+
+            <div class="periodic-table-image">
+                <img src="https://i.postimg.cc/50s7wHPH/508ed77c-0920-4214-b8c1-a2723bdc25c2.jpg" alt="Periodic Table" width="1200" height="600">
+            </div>
+            
+            <p>
+                <strong>Select any option below to get started!</strong>
+            </p>
+        </section>
+
+        <div class="controls">
+            <button onclick="promptSearch('symbol')">Search by Symbol</button>
+            <button onclick="promptSearch('name')">Search by Name</button>
+            <button onclick="promptSearch('number')">Search by Atomic Number</button>
+            <button onclick="calculateMolecularMass()">Calculate Molecular Mass</button>
+            <button onclick="calculateMolesFromMass()">Calculate Moles from Mass</button>
+            <button onclick="calculateMassFromMoles()">Calculate Mass from Moles</button>
+            <button onclick="calculatePercentageComp()">Calculate Percentage Composition</button>
+            <button onclick="showProperty('melting_point')">Show Melting Point</button>
+            <button onclick="showProperty('density')">Show Density</button>
+            <button onclick="showProperty('electronegativity')">Show Electronegativity</button>
+            <button onclick="showProperty('ionization_energy')">Show Ionization Energy</button>
+            <button onclick="showProperty('atomic_radius')">Show Atomic Radius</button>
+            <button onclick="showProperty('electron_configuration')">Show Electron Configuration</button>
+            <button onclick="showProperty('boiling_point')">Show Boiling Point</button>
+            <button onclick="plotGraph('boiling_point')">Graph: Boiling Point</button>
+            <button onclick="plotGraph('density')">Graph: Density</button>
+            <button onclick="plotGraph('electronegativity')">Graph: Electronegativity</button>
+            <button onclick="plotGraph('atomic_radius')">Graph: Atomic Radius</button>
+            <button onclick="returnToHome()">Return to Home</button>
+        </div>
+
+        <!-- Output Section -->
+        <div id="output" class="output-section"></div>
+
+        <!-- Canvas for Chart -->
+        <canvas id="elementChart" width="400" height="200"></canvas>
+
+        <section class="key-features">
+            <p>
+                <strong>Key Features:</strong>
+            </p>
+            <ul>
+                <li><strong>Search by Symbol, Name, or Atomic Number:</strong> Quickly find detailed information about any element.</li>
+                <li><strong>Calculate Molecular Mass:</strong> Determine the molecular mass of a compound.</li>
+                <li><strong>Calculate Moles from Mass:</strong> Convert mass to moles for a given substance.</li>
+                <li><strong>Calculate Mass from Moles:</strong> Convert moles to mass for a given substance.</li>
+                <li><strong>Calculate Percentage Composition:</strong> Find the percentage composition of elements in a compound.</li>
+            </ul>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>Created with ❤️ by <a href="./team portfolio.html" target="_blank">Team Innovators</a> | <a href="https://github.com/4ceduser" target="_self">GitHub</a></p>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const elements = [
+        {
+        "symbol": "H",
+        "name": "Hydrogen",
+        "atomic_number": 1,
+        "atomic_mass": 1.008,
+        "boiling_point": 20.28,
+        "melting_point": 13.99,
+        "density": 0.00008988,
+        "electronegativity": 2.20,
+        "ionization_energy": 1312,
+        "atomic_radius": 53,
+        "electron_configuration": "1s1"
+    },
+    {
+        "symbol": "He",
+        "name": "Helium",
+        "atomic_number": 2,
+        "atomic_mass": 4.0026,
+        "boiling_point": 4.22,
+        "melting_point": 0.95,
+        "density": 0.0001786,
+        "electronegativity": null,
+        "ionization_energy": 2372,
+        "atomic_radius": 31,
+        "electron_configuration": "1s2"
+    },
+    {
+        "symbol": "Li",
+        "name": "Lithium",
+        "atomic_number": 3,
+        "atomic_mass": 6.94,
+        "boiling_point": 1603,
+        "melting_point": 453.69,
+        "density": 0.534,
+        "electronegativity": 0.98,
+        "ionization_energy": 520,
+        "atomic_radius": 167,
+        "electron_configuration": "[He] 2s1"
+    },
+    {
+        "symbol": "Be",
+        "name": "Beryllium",
+        "atomic_number": 4,
+        "atomic_mass": 9.0122,
+        "boiling_point": 2742,
+        "melting_point": 1560,
+        "density": 1.85,
+        "electronegativity": 1.57,
+        "ionization_energy": 899,
+        "atomic_radius": 112,
+        "electron_configuration": "[He] 2s2"
+    },
+    {
+        "symbol": "B",
+        "name": "Boron",
+        "atomic_number": 5,
+        "atomic_mass": 10.81,
+        "boiling_point": 4273,
+        "melting_point": 2349,
+        "density": 2.34,
+        "electronegativity": 2.04,
+        "ionization_energy": 801,
+        "atomic_radius": 87,
+        "electron_configuration": "[He] 2s2 2p1"
+    },
+    {
+        "symbol": "C",
+        "name": "Carbon",
+        "atomic_number": 6,
+        "atomic_mass": 12.011,
+        "boiling_point": 4300,
+        "melting_point": 3823,
+        "density": 2.267,
+        "electronegativity": 2.55,
+        "ionization_energy": 1086,
+        "atomic_radius": 67,
+        "electron_configuration": "[He] 2s2 2p2"
+    },
+    {
+        "symbol": "N",
+        "name": "Nitrogen",
+        "atomic_number": 7,
+        "atomic_mass": 14.007,
+        "boiling_point": 77.36,
+        "melting_point": 63.15,
+        "density": 0.001251,
+        "electronegativity": 3.04,
+        "ionization_energy": 1402,
+        "atomic_radius": 56,
+        "electron_configuration": "[He] 2s2 2p3"
+    },
+    {
+        "symbol": "O",
+        "name": "Oxygen",
+        "atomic_number": 8,
+        "atomic_mass": 15.999,
+        "boiling_point": 90.20,
+        "melting_point": 54.36,
+        "density": 0.001429,
+        "electronegativity": 3.44,
+        "ionization_energy": 1314,
+        "atomic_radius": 48,
+        "electron_configuration": "[He] 2s2 2p4"
+    },
+    {
+        "symbol": "F",
+        "name": "Fluorine",
+        "atomic_number": 9,
+        "atomic_mass": 18.998,
+        "boiling_point": 85.03,
+        "melting_point": 53.48,
+        "density": 0.001696,
+        "electronegativity": 3.98,
+        "ionization_energy": 1681,
+        "atomic_radius": 42,
+        "electron_configuration": "[He] 2s2 2p5"
+    },
+    {
+        "symbol": "Ne",
+        "name": "Neon",
+        "atomic_number": 10,
+        "atomic_mass": 20.180,
+        "boiling_point": 27.07,
+        "melting_point": 24.56,
+        "density": 0.0008999,
+        "electronegativity": null,
+        "ionization_energy": 2081,
+        "atomic_radius": 38,
+        "electron_configuration": "[He] 2s2 2p6"
+    },
+    {
+        "symbol": "Na",
+        "name": "Sodium",
+        "atomic_number": 11,
+        "atomic_mass": 22.990,
+        "boiling_point": 1156,
+        "melting_point": 370.87,
+        "density": 0.971,
+        "electronegativity": 0.93,
+        "ionization_energy": 496,
+        "atomic_radius": 190,
+        "electron_configuration": "[Ne] 3s1"
+    },
+    {
+        "symbol": "Mg",
+        "name": "Magnesium",
+        "atomic_number": 12,
+        "atomic_mass": 24.305,
+        "boiling_point": 1363,
+        "melting_point": 923,
+        "density": 1.738,
+        "electronegativity": 1.31,
+        "ionization_energy": 738,
+        "atomic_radius": 145,
+        "electron_configuration": "[Ne] 3s2"
+    },
+    {
+        "symbol": "Al",
+        "name": "Aluminum",
+        "atomic_number": 13,
+        "atomic_mass": 26.982,
+        "boiling_point": 2740,
+        "melting_point": 933.47,
+        "density": 2.70,
+        "electronegativity": 1.61,
+        "ionization_energy": 578,
+        "atomic_radius": 118,
+        "electron_configuration": "[Ne] 3s2 3p1"
+    },
+    {
+        "symbol": "Si",
+        "name": "Silicon",
+        "atomic_number": 14,
+        "atomic_mass": 28.085,
+        "boiling_point": 3538,
+        "melting_point": 1687,
+        "density": 2.329,
+        "electronegativity": 1.90,
+        "ionization_energy": 786,
+        "atomic_radius": 111,
+        "electron_configuration": "[Ne] 3s2 3p2"
+    },
+    {
+        "symbol": "P",
+        "name": "Phosphorus",
+        "atomic_number": 15,
+        "atomic_mass": 30.974,
+        "boiling_point": 553,
+        "melting_point": 317.3,
+        "density": 1.82,
+        "electronegativity": 2.19,
+        "ionization_energy": 1012,
+        "atomic_radius": 98,
+        "electron_configuration": "[Ne] 3s2 3p3"
+    },
+    {
+        "symbol": "S",
+        "name": "Sulfur",
+        "atomic_number": 16,
+        "atomic_mass": 32.06,
+        "boiling_point": 717.8,
+        "melting_point": 388.36,
+        "density": 2.067,
+        "electronegativity": 2.58,
+        "ionization_energy": 1000,
+        "atomic_radius": 88,
+        "electron_configuration": "[Ne] 3s2 3p4"
+    },
+    {
+        "symbol": "Cl",
+        "name": "Chlorine",
+        "atomic_number": 17,
+        "atomic_mass": 35.45,
+        "boiling_point": 239.11,
+        "melting_point": 171.6,
+        "density": 0.003214,
+        "electronegativity": 3.16,
+        "ionization_energy": 1251,
+        "atomic_radius": 79,
+        "electron_configuration": "[Ne] 3s2 3p5"
+    },
+    {
+        "symbol": "Ar",
+        "name": "Argon",
+        "atomic_number": 18,
+        "atomic_mass": 39.948,
+        "boiling_point": 87.30,
+        "melting_point": 83.80,
+        "density": 0.001784,
+        "electronegativity": null,
+        "ionization_energy": 1521,
+        "atomic_radius": 71,
+        "electron_configuration": "[Ne] 3s2 3p6"
+    },
+    {
+        "symbol": "K",
+        "name": "Potassium",
+        "atomic_number": 19,
+        "atomic_mass": 39.098,
+        "boiling_point": 1032,
+        "melting_point": 336.53,
+        "density": 0.862,
+        "electronegativity": 0.82,
+        "ionization_energy": 419,
+        "atomic_radius": 243,
+        "electron_configuration": "[Ar] 4s1"
+    },
+    {
+        "symbol": "Ca",
+        "name": "Calcium",
+        "atomic_number": 20,
+        "atomic_mass": 40.078,
+        "boiling_point": 1757,
+        "melting_point": 1115,
+        "density": 1.54,
+        "electronegativity": 1.00,
+        "ionization_energy": 590,
+        "atomic_radius": 194,
+        "electron_configuration": "[Ar] 4s2"
+    },
+    {
+        "symbol": "Sc",
+        "name": "Scandium",
+        "atomic_number": 21,
+        "atomic_mass": 44.956,
+        "boiling_point": 3109,
+        "melting_point": 1814,
+        "density": 2.985,
+        "electronegativity": 1.36,
+        "ionization_energy": 633,
+        "atomic_radius": 184,
+        "electron_configuration": "[Ar] 3d1 4s2"
+    },
+    {
+        "symbol": "Ti",
+        "name": "Titanium",
+        "atomic_number": 22,
+        "atomic_mass": 47.867,
+        "boiling_point": 3560,
+        "melting_point": 1941,
+        "density": 4.54,
+        "electronegativity": 1.54,
+        "ionization_energy": 659,
+        "atomic_radius": 176,
+        "electron_configuration": "[Ar] 3d2 4s2"
+    },
+    {
+        "symbol": "V",
+        "name": "Vanadium",
+        "atomic_number": 23,
+        "atomic_mass": 50.942,
+        "boiling_point": 3680,
+        "melting_point": 2183,
+        "density": 6.11,
+        "electronegativity": 1.63,
+        "ionization_energy": 651,
+        "atomic_radius": 171,
+        "electron_configuration": "[Ar] 3d3 4s2"
+    },
+    {
+        "symbol": "Cr",
+        "name": "Chromium",
+        "atomic_number": 24,
+        "atomic_mass": 51.996,
+        "boiling_point": 2944,
+        "melting_point": 2180,
+        "density": 7.15,
+        "electronegativity": 1.66,
+        "ionization_energy": 653,
+        "atomic_radius": 166,
+        "electron_configuration": "[Ar] 3d5 4s1"
+    },
+    {
+        "symbol": "Mn",
+        "name": "Manganese",
+        "atomic_number": 25,
+        "atomic_mass": 54.938,
+        "boiling_point": 2334,
+        "melting_point": 1519,
+        "density": 7.21,
+        "electronegativity": 1.55,
+        "ionization_energy": 717,
+        "atomic_radius": 161,
+        "electron_configuration": "[Ar] 3d5 4s2"
+    },
+    {
+        "symbol": "Fe",
+        "name": "Iron",
+        "atomic_number": 26,
+        "atomic_mass": 55.845,
+        "boiling_point": 3134,
+        "melting_point": 1811,
+        "density": 7.874,
+        "electronegativity": 1.83,
+        "ionization_energy": 762,
+        "atomic_radius": 156,
+        "electron_configuration": "[Ar] 3d6 4s2"
+    },
+    {
+        "symbol": "Co",
+        "name": "Cobalt",
+        "atomic_number": 27,
+        "atomic_mass": 58.933,
+        "boiling_point": 3200,
+        "melting_point": 1768,
+        "density": 8.86,
+        "electronegativity": 1.88,
+        "ionization_energy": 760,
+        "atomic_radius": 152,
+        "electron_configuration": "[Ar] 3d7 4s2"
+    },
+    {
+        "symbol": "Ni",
+        "name": "Nickel",
+        "atomic_number": 28,
+        "atomic_mass": 58.693,
+        "boiling_point": 3186,
+        "melting_point": 1728,
+        "density": 8.908,
+        "electronegativity": 1.91,
+        "ionization_energy": 737,
+        "atomic_radius": 149,
+        "electron_configuration": "[Ar] 3d8 4s2"
+    },
+    {
+        "symbol": "Cu",
+        "name": "Copper",
+        "atomic_number": 29,
+        "atomic_mass": 63.546,
+        "boiling_point": 2835,
+        "melting_point": 1357.77,
+        "density": 8.96,
+        "electronegativity": 1.90,
+        "ionization_energy": 745,
+        "atomic_radius": 145,
+        "electron_configuration": "[Ar] 3d10 4s1"
+    },
+    {
+        "symbol": "Zn",
+        "name": "Zinc",
+        "atomic_number": 30,
+        "atomic_mass": 65.38,
+        "boiling_point": 1180,
+        "melting_point": 692.68,
+        "density": 7.134,
+        "electronegativity": 1.65,
+        "ionization_energy": 906,
+        "atomic_radius": 142,
+        "electron_configuration": "[Ar] 3d10 4s2"
+    },
+    {
+        "symbol": "Ga",
+        "name": "Gallium",
+        "atomic_number": 31,
+        "atomic_mass": 69.723,
+        "boiling_point": 2477,
+        "melting_point": 302.91,
+        "density": 5.907,
+        "electronegativity": 1.81,
+        "ionization_energy": 579,
+        "atomic_radius": 136,
+        "electron_configuration": "[Ar] 3d10 4s2 4p1"
+    },
+    {
+        "symbol": "Ge",
+        "name": "Germanium",
+        "atomic_number": 32,
+        "atomic_mass": 72.630,
+        "boiling_point": 3106,
+        "melting_point": 1211.40,
+        "density": 5.323,
+        "electronegativity": 2.01,
+        "ionization_energy": 762,
+        "atomic_radius": 125,
+        "electron_configuration": "[Ar] 3d10 4s2 4p2"
+    },
+    {
+        "symbol": "As",
+        "name": "Arsenic",
+        "atomic_number": 33,
+        "atomic_mass": 74.922,
+        "boiling_point": 887,
+        "melting_point": 1090,
+        "density": 5.776,
+        "electronegativity": 2.18,
+        "ionization_energy": 947,
+        "atomic_radius": 114,
+        "electron_configuration": "[Ar] 3d10 4s2 4p3"
+    },
+    {
+        "symbol": "Se",
+        "name": "Selenium",
+        "atomic_number": 34,
+        "atomic_mass": 78.971,
+        "boiling_point": 958,
+        "melting_point": 494,
+        "density": 4.809,
+        "electronegativity": 2.55,
+        "ionization_energy": 941,
+        "atomic_radius": 103,
+        "electron_configuration": "[Ar] 3d10 4s2 4p4"
+    },
+    {
+        "symbol": "Br",
+        "name": "Bromine",
+        "atomic_number": 35,
+        "atomic_mass": 79.904,
+        "boiling_point": 332.0,
+        "melting_point": 265.8,
+        "density": 3.122,
+        "electronegativity": 2.96,
+        "ionization_energy": 1140,
+        "atomic_radius": 94,
+        "electron_configuration": "[Ar] 3d10 4s2 4p5"
+    },
+    {
+        "symbol": "Kr",
+        "name": "Krypton",
+        "atomic_number": 36,
+        "atomic_mass": 83.798,
+        "boiling_point": 119.93,
+        "melting_point": 115.79,
+        "density": 0.003733,
+        "electronegativity": 3.00,
+        "ionization_energy": 1351,
+        "atomic_radius": 88,
+        "electron_configuration": "[Ar] 3d10 4s2 4p6"
+    },
+    {
+        "symbol": "Rb",
+        "name": "Rubidium",
+        "atomic_number": 37,
+        "atomic_mass": 85.468,
+        "boiling_point": 961,
+        "melting_point": 312.46,
+        "density": 1.532,
+        "electronegativity": 0.82,
+        "ionization_energy": 403,
+        "atomic_radius": 265,
+        "electron_configuration": "[Kr] 5s1"
+    },
+    {
+        "symbol": "Sr",
+        "name": "Strontium",
+        "atomic_number": 38,
+        "atomic_mass": 87.62,
+        "boiling_point": 1655,
+        "melting_point": 1050,
+        "density": 2.64,
+        "electronegativity": 0.95,
+        "ionization_energy": 550,
+        "atomic_radius": 219,
+        "electron_configuration": "[Kr] 5s2"
+    },
+    {
+        "symbol": "Y",
+        "name": "Yttrium",
+        "atomic_number": 39,
+        "atomic_mass": 88.906,
+        "boiling_point": 3618,
+        "melting_point": 1799,
+        "density": 4.469,
+        "electronegativity": 1.22,
+        "ionization_energy": 600,
+        "atomic_radius": 212,
+        "electron_configuration": "[Kr] 4d1 5s2"
+    },
+    {
+        "symbol": "Zr",
+        "name": "Zirconium",
+        "atomic_number": 40,
+        "atomic_mass": 91.224,
+        "boiling_point": 4682,
+        "melting_point": 2128,
+        "density": 6.506,
+        "electronegativity": 1.33,
+        "ionization_energy": 640,
+        "atomic_radius": 206,
+        "electron_configuration": "[Kr] 4d2 5s2"
+    },
+    {
+        "symbol": "Nb",
+        "name": "Niobium",
+        "atomic_number": 41,
+        "atomic_mass": 92.906,
+        "boiling_point": 5017,
+        "melting_point": 2750,
+        "density": 8.57,
+        "electronegativity": 1.6,
+        "ionization_energy": 652,
+        "atomic_radius": 198,
+        "electron_configuration": "[Kr] 4d4 5s1"
+    },
+    {
+        "symbol": "Mo",
+        "name": "Molybdenum",
+        "atomic_number": 42,
+        "atomic_mass": 95.95,
+        "boiling_point": 4912,
+        "melting_point": 2896,
+        "density": 10.22,
+        "electronegativity": 2.16,
+        "ionization_energy": 684,
+        "atomic_radius": 190,
+        "electron_configuration": "[Kr] 4d5 5s1"
+    },
+    {
+        "symbol": "Tc",
+        "name": "Technetium",
+        "atomic_number": 43,
+        "atomic_mass": 98,
+        "boiling_point": 4538,
+        "melting_point": 2430,
+        "density": 11.5,
+        "electronegativity": 1.9,
+        "ionization_energy": 702,
+        "atomic_radius": 183,
+        "electron_configuration": "[Kr] 4d5 5s2"
+    },
+    {
+        "symbol": "Ru",
+        "name": "Ruthenium",
+        "atomic_number": 44,
+        "atomic_mass": 101.07,
+        "boiling_point": 4423,
+        "melting_point": 2607,
+        "density": 12.37,
+        "electronegativity": 2.2,
+        "ionization_energy": 710,
+        "atomic_radius": 178,
+        "electron_configuration": "[Kr] 4d7 5s1"
+    },
+    {
+        "symbol": "Rh",
+        "name": "Rhodium",
+        "atomic_number": 45,
+        "atomic_mass": 102.91,
+        "boiling_point": 3968,
+        "melting_point": 2237,
+        "density": 12.41,
+        "electronegativity": 2.28,
+        "ionization_energy": 720,
+        "atomic_radius": 173,
+        "electron_configuration": "[Kr] 4d8 5s1"
+    },
+    {
+        "symbol": "Pd",
+        "name": "Palladium",
+        "atomic_number": 46,
+        "atomic_mass": 106.42,
+        "boiling_point": 3236,
+        "melting_point": 1828.05,
+        "density": 12.02,
+        "electronegativity": 2.20,
+        "ionization_energy": 804,
+        "atomic_radius": 169,
+        "electron_configuration": "[Kr] 4d10"
+    },
+    {
+        "symbol": "Ag",
+        "name": "Silver",
+        "atomic_number": 47,
+        "atomic_mass": 107.87,
+        "boiling_point": 2435,
+        "melting_point": 1234.93,
+        "density": 10.49,
+        "electronegativity": 1.93,
+        "ionization_energy": 731,
+        "atomic_radius": 165,
+        "electron_configuration": "[Kr] 4d10 5s1"
+    },
+    {
+        "symbol": "Cd",
+        "name": "Cadmium",
+        "atomic_number": 48,
+        "atomic_mass": 112.41,
+        "boiling_point": 1040,
+        "melting_point": 594.22,
+        "density": 8.65,
+        "electronegativity": 1.69,
+        "ionization_energy": 868,
+        "atomic_radius": 161,
+        "electron_configuration": "[Kr] 4d10 5s2"
+    },
+    {
+        "symbol": "In",
+        "name": "Indium",
+        "atomic_number": 49,
+        "atomic_mass": 114.82,
+        "boiling_point": 2345,
+        "melting_point": 429.75,
+        "density": 7.31,
+        "electronegativity": 1.78,
+        "ionization_energy": 558,
+        "atomic_radius": 156,
+        "electron_configuration": "[Kr] 4d10 5s2 5p1"
+    },
+    {
+        "symbol": "Sn",
+        "name": "Tin",
+        "atomic_number": 50,
+        "atomic_mass": 118.71,
+        "boiling_point": 2875,
+        "melting_point": 505.08,
+        "density": 7.31,
+        "electronegativity": 1.96,
+        "ionization_energy": 709,
+        "atomic_radius": 145,
+        "electron_configuration": "[Kr] 4d10 5s2 5p2"
+    },
+    {
+        "symbol": "Sb",
+        "name": "Antimony",
+        "atomic_number": 51,
+        "atomic_mass": 121.76,
+        "boiling_point": 1860,
+        "melting_point": 903.78,
+        "density": 6.685,
+        "electronegativity": 2.05,
+        "ionization_energy": 834,
+        "atomic_radius": 133,
+        "electron_configuration": "[Kr] 4d10 5s2 5p3"
+    },
+    {
+        "symbol": "Te",
+        "name": "Tellurium",
+        "atomic_number": 52,
+        "atomic_mass": 127.60,
+        "boiling_point": 1261,
+        "melting_point": 722.66,
+        "density": 6.232,
+        "electronegativity": 2.1,
+        "ionization_energy": 869,
+        "atomic_radius": 123,
+        "electron_configuration": "[Kr] 4d10 5s2 5p4"
+    },
+    {
+        "symbol": "I",
+        "name": "Iodine",
+        "atomic_number": 53,
+        "atomic_mass": 126.90,
+        "boiling_point": 457.4,
+        "melting_point": 386.85,
+        "density": 4.93,
+        "electronegativity": 2.66,
+        "ionization_energy": 1008,
+        "atomic_radius": 115,
+        "electron_configuration": "[Kr] 4d10 5s2 5p5"
+    },
+    {
+        "symbol": "Xe",
+        "name": "Xenon",
+        "atomic_number": 54,
+        "atomic_mass": 131.29,
+        "boiling_point": 165.1,
+        "melting_point": 161.4,
+        "density": 0.005887,
+        "electronegativity": 2.6,
+        "ionization_energy": 1170,
+        "atomic_radius": 108,
+        "electron_configuration": "[Kr] 4d10 5s2 5p6"
+    },
+    {
+        "symbol": "Cs",
+        "name": "Cesium",
+        "atomic_number": 55,
+        "atomic_mass": 132.91,
+        "boiling_point": 944,
+        "melting_point": 301.59,
+        "density": 1.873,
+        "electronegativity": 0.79,
+        "ionization_energy": 376,
+        "atomic_radius": 298,
+        "electron_configuration": "[Xe] 6s1"
+    },
+    {
+        "symbol": "Ba",
+        "name": "Barium",
+        "atomic_number": 56,
+        "atomic_mass": 137.33,
+        "boiling_point": 2170,
+        "melting_point": 1000,
+        "density": 3.594,
+        "electronegativity": 0.89,
+        "ionization_energy": 503,
+        "atomic_radius": 253,
+        "electron_configuration": "[Xe] 6s2"
+    },
+    {
+        "symbol": "La",
+        "name": "Lanthanum",
+        "atomic_number": 57,
+        "atomic_mass": 138.91,
+        "boiling_point": 3743,
+        "melting_point": 1193,
+        "density": 6.145,
+        "electronegativity": 1.10,
+        "ionization_energy": 538,
+        "atomic_radius": 195,
+        "electron_configuration": "[Xe] 5d1 6s2"
+    },
+    {
+        "symbol": "Ce",
+        "name": "Cerium",
+        "atomic_number": 58,
+        "atomic_mass": 140.12,
+        "boiling_point": 3716,
+        "melting_point": 1071,
+        "density": 6.770,
+        "electronegativity": 1.12,
+        "ionization_energy": 534,
+        "atomic_radius": 185,
+        "electron_configuration": "[Xe] 4f1 5d1 6s2"
+    },
+    {
+        "symbol": "Pr",
+        "name": "Praseodymium",
+        "atomic_number": 59,
+        "atomic_mass": 140.91,
+        "boiling_point": 3793,
+        "melting_point": 1208,
+        "density": 6.773,
+        "electronegativity": 1.13,
+        "ionization_energy": 527,
+        "atomic_radius": 185,
+        "electron_configuration": "[Xe] 4f3 6s2"
+    },
+    {
+        "symbol": "Nd",
+        "name": "Neodymium",
+        "atomic_number": 60,
+        "atomic_mass": 144.24,
+        "boiling_point": 3347,
+        "melting_point": 1297,
+        "density": 7.007,
+        "electronegativity": 1.14,
+        "ionization_energy": 533,
+        "atomic_radius": 185,
+        "electron_configuration": "[Xe] 4f4 6s2"
+    },
+    {
+        "symbol": "Pm",
+        "name": "Promethium",
+        "atomic_number": 61,
+        "atomic_mass": 145,
+        "boiling_point": 3273,
+        "melting_point": 1315,
+        "density": 7.26,
+        "electronegativity": 1.13,
+        "ionization_energy": 540,
+        "atomic_radius": 185,
+        "electron_configuration": "[Xe] 4f5 6s2"
+    },
+    {
+        "symbol": "Sm",
+        "name": "Samarium",
+        "atomic_number": 62,
+        "atomic_mass": 150.36,
+        "boiling_point": 2067,
+        "melting_point": 1345,
+        "density": 7.52,
+        "electronegativity": 1.17,
+        "ionization_energy": 545,
+        "atomic_radius": 185,
+        "electron_configuration": "[Xe] 4f6 6s2"
+    },
+    {
+        "symbol": "Eu",
+        "name": "Europium",
+        "atomic_number": 63,
+        "atomic_mass": 151.96,
+        "boiling_point": 1802,
+        "melting_point": 1099,
+        "density": 5.244,
+        "electronegativity": 1.2,
+        "ionization_energy": 547,
+        "atomic_radius": 185,
+        "electron_configuration": "[Xe] 4f7 6s2"
+    },
+    {
+        "symbol": "Gd",
+        "name": "Gadolinium",
+        "atomic_number": 64,
+        "atomic_mass": 157.25,
+        "boiling_point": 3546,
+        "melting_point": 1585,
+        "density": 7.895,
+        "electronegativity": 1.2,
+        "ionization_energy": 592,
+        "atomic_radius": 180,
+        "electron_configuration": "[Xe] 4f7 5d1 6s2"
+    },
+    {
+        "symbol": "Tb",
+        "name": "Terbium",
+        "atomic_number": 65,
+        "atomic_mass": 158.93,
+        "boiling_point": 3503,
+        "melting_point": 1629,
+        "density": 8.229,
+        "electronegativity": 1.2,
+        "ionization_energy": 565,
+        "atomic_radius": 175,
+        "electron_configuration": "[Xe] 4f9 6s2"
+    },
+    {
+        "symbol": "Dy",
+        "name": "Dysprosium",
+        "atomic_number": 66,
+        "atomic_mass": 162.50,
+        "boiling_point": 2840,
+        "melting_point": 1685,
+        "density": 8.55,
+        "electronegativity": 1.22,
+        "ionization_energy": 573,
+        "atomic_radius": 175,
+        "electron_configuration": "[Xe] 4f10 6s2"
+    },
+    {
+        "symbol": "Ho",
+        "name": "Holmium",
+        "atomic_number": 67,
+        "atomic_mass": 164.93,
+        "boiling_point": 2993,
+        "melting_point": 1747,
+        "density": 8.795,
+        "electronegativity": 1.23,
+        "ionization_energy": 581,
+        "atomic_radius": 175,
+        "electron_configuration": "[Xe] 4f11 6s2"
+    },
+    {
+        "symbol": "Er",
+        "name": "Erbium",
+        "atomic_number": 68,
+        "atomic_mass": 167.26,
+        "boiling_point": 3141,
+        "melting_point": 1802,
+        "density": 9.066,
+        "electronegativity": 1.24,
+        "ionization_energy": 589,
+        "atomic_radius": 175,
+        "electron_configuration": "[Xe] 4f12 6s2"
+    },
+    {
+        "symbol": "Tm",
+        "name": "Thulium",
+        "atomic_number": 69,
+        "atomic_mass": 168.93,
+        "boiling_point": 2223,
+        "melting_point": 1818,
+        "density": 9.321,
+        "electronegativity": 1.25,
+        "ionization_energy": 597,
+        "atomic_radius": 175,
+        "electron_configuration": "[Xe] 4f13 6s2"
+    },
+    {
+        "symbol": "Yb",
+        "name": "Ytterbium",
+        "atomic_number": 70,
+        "atomic_mass": 173.05,
+        "boiling_point": 1469,
+        "melting_point": 1097,
+        "density": 6.965,
+        "electronegativity": 1.1,
+        "ionization_energy": 603,
+        "atomic_radius": 175,
+        "electron_configuration": "[Xe] 4f14 6s2"
+    },
+    {
+        "symbol": "Lu",
+        "name": "Lutetium",
+        "atomic_number": 71,
+        "atomic_mass": 174.97,
+        "boiling_point": 3675,
+        "melting_point": 1936,
+        "density": 9.841,
+        "electronegativity": 1.27,
+        "ionization_energy": 524,
+        "atomic_radius": 175,
+        "electron_configuration": "[Xe] 4f14 5d1 6s2"
+    },
+    {
+        "symbol": "Hf",
+        "name": "Hafnium",
+        "atomic_number": 72,
+        "atomic_mass": 178.49,
+        "boiling_point": 4876,
+        "melting_point": 2506,
+        "density": 13.31,
+        "electronegativity": 1.3,
+        "ionization_energy": 658,
+        "atomic_radius": 155,
+        "electron_configuration": "[Xe] 4f14 5d2 6s2"
+    },
+    {
+        "symbol": "Ta",
+        "name": "Tantalum",
+        "atomic_number": 73,
+        "atomic_mass": 180.95,
+        "boiling_point": 5731,
+        "melting_point": 3290,
+        "density": 16.654,
+        "electronegativity": 1.5,
+        "ionization_energy": 761,
+        "atomic_radius": 145,
+        "electron_configuration": "[Xe] 4f14 5d3 6s2"
+    },
+    {
+        "symbol": "W",
+        "name": "Tungsten",
+        "atomic_number": 74,
+        "atomic_mass": 183.84,
+        "boiling_point": 5828,
+        "melting_point": 3695,
+        "density": 19.25,
+        "electronegativity": 2.36,
+        "ionization_energy": 770,
+        "atomic_radius": 135,
+        "electron_configuration": "[Xe] 4f14 5d4 6s2"
+    },
+    {
+        "symbol": "Re",
+        "name": "Rhenium",
+        "atomic_number": 75,
+        "atomic_mass": 186.21,
+        "boiling_point": 5869,
+        "melting_point": 3459,
+        "density": 21.02,
+        "electronegativity": 1.9,
+        "ionization_energy": 760,
+        "atomic_radius": 135,
+        "electron_configuration": "[Xe] 4f14 5d5 6s2"
+    },
+    {
+        "symbol": "Os",
+        "name": "Osmium",
+        "atomic_number": 76,
+        "atomic_mass": 190.23,
+        "boiling_point": 5285,
+        "melting_point": 3306,
+        "density": 22.59,
+        "electronegativity": 2.2,
+        "ionization_energy": 840,
+        "atomic_radius": 130,
+        "electron_configuration": "[Xe] 4f14 5d6 6s2"
+    },
+    {
+        "symbol": "Ir",
+        "name": "Iridium",
+        "atomic_number": 77,
+        "atomic_mass": 192.22,
+        "boiling_point": 4701,
+        "melting_point": 2719,
+        "density": 22.56,
+        "electronegativity": 2.20,
+        "ionization_energy": 880,
+        "atomic_radius": 135,
+        "electron_configuration": "[Xe] 4f14 5d7 6s2"
+    },
+    {
+        "symbol": "Pt",
+        "name": "Platinum",
+        "atomic_number": 78,
+        "atomic_mass": 195.08,
+        "boiling_point": 4098,
+        "melting_point": 2041.4,
+        "density": 21.45,
+        "electronegativity": 2.28,
+        "ionization_energy": 870,
+        "atomic_radius": 135,
+        "electron_configuration": "[Xe] 4f14 5d9 6s1"
+    },
+    {
+        "symbol": "Au",
+        "name": "Gold",
+        "atomic_number": 79,
+        "atomic_mass": 196.97,
+        "boiling_point": 3129,
+        "melting_point": 1337.33,
+        "density": 19.32,
+        "electronegativity": 2.54,
+        "ionization_energy": 890,
+        "atomic_radius": 135,
+        "electron_configuration": "[Xe] 4f14 5d10 6s1"
+    },
+    {
+        "symbol": "Hg",
+        "name": "Mercury",
+        "atomic_number": 80,
+        "atomic_mass": 200.59,
+        "boiling_point": 629.88,
+        "melting_point": 234.32,
+        "density": 13.534,
+        "electronegativity": 2.00,
+        "ionization_energy": 1007,
+        "atomic_radius": 150,
+        "electron_configuration": "[Xe] 4f14 5d10 6s2"
+    },
+    {
+        "symbol": "Tl",
+        "name": "Thallium",
+        "atomic_number": 81,
+        "atomic_mass": 204.38,
+        "boiling_point": 1746,
+        "melting_point": 577,
+        "density": 11.85,
+        "electronegativity": 1.62,
+        "ionization_energy": 589,
+        "atomic_radius": 190,
+        "electron_configuration": "[Xe] 4f14 5d10 6s2 6p1"
+    },
+    {
+        "symbol": "Pb",
+        "name": "Lead",
+        "atomic_number": 82,
+        "atomic_mass": 207.2,
+        "boiling_point": 2022,
+        "melting_point": 600.61,
+        "density": 11.34,
+        "electronegativity": 2.33,
+        "ionization_energy": 716,
+        "atomic_radius": 180,
+        "electron_configuration": "[Xe] 4f14 5d10 6s2 6p2"
+    },
+    {
+        "symbol": "Bi",
+        "name": "Bismuth",
+        "atomic_number": 83,
+        "atomic_mass": 208.98,
+        "boiling_point": 1837,
+        "melting_point": 544.7,
+        "density": 9.807,
+        "electronegativity": 2.02,
+        "ionization_energy": 703,
+        "atomic_radius": 160,
+        "electron_configuration": "[Xe] 4f14 5d10 6s2 6p3"
+    },
+    {
+        "symbol": "Po",
+        "name": "Polonium",
+        "atomic_number": 84,
+        "atomic_mass": 209,
+        "boiling_point": 1235,
+        "melting_point": 527,
+        "density": 9.32,
+        "electronegativity": 2.0,
+        "ionization_energy": 812,
+        "atomic_radius": 190,
+        "electron_configuration": "[Xe] 4f14 5d10 6s2 6p4"
+    },
+    {
+        "symbol": "At",
+        "name": "Astatine",
+        "atomic_number": 85,
+        "atomic_mass": 210,
+        "boiling_point": 610,
+        "melting_point": 575,
+        "density": 7,
+        "electronegativity": 2.2,
+        "ionization_energy": 899,
+        "atomic_radius": 127,
+        "electron_configuration": "[Xe] 4f14 5d10 6s2 6p5"
+    },
+    {
+        "symbol": "Rn",
+        "name": "Radon",
+        "atomic_number": 86,
+        "atomic_mass": 222,
+        "boiling_point": 211.3,
+        "melting_point": 202,
+        "density": 0.00973,
+        "electronegativity": 2.2,
+        "ionization_energy": 1037,
+        "atomic_radius": 120,
+        "electron_configuration": "[Xe] 4f14 5d10 6s2 6p6"
+    },
+    {
+        "symbol": "Fr",
+        "name": "Francium",
+        "atomic_number": 87,
+        "atomic_mass": 223,
+        "boiling_point": 950,
+        "melting_point": 300,
+        "density": 1.87,
+        "electronegativity": 0.7,
+        "ionization_energy": 380,
+        "atomic_radius": 348,
+        "electron_configuration": "[Rn] 7s1"
+    },
+    {
+        "symbol": "Ra",
+        "name": "Radium",
+        "atomic_number": 88,
+        "atomic_mass": 226,
+        "boiling_point": 1737,
+        "melting_point": 973,
+        "density": 5.5,
+        "electronegativity": 0.9,
+        "ionization_energy": 509,
+        "atomic_radius": 283,
+        "electron_configuration": "[Rn] 7s2"
+    },
+    {
+        "symbol": "Ac",
+        "name": "Actinium",
+        "atomic_number": 89,
+        "atomic_mass": 227,
+        "boiling_point": 3471,
+        "melting_point": 1323,
+        "density": 10.07,
+        "electronegativity": 1.1,
+        "ionization_energy": 499,
+        "atomic_radius": 195,
+        "electron_configuration": "[Rn] 6d1 7s2"
+    },
+    {
+        "symbol": "Th",
+        "name": "Thorium",
+        "atomic_number": 90,
+        "atomic_mass": 232.04,
+        "boiling_point": 5061,
+        "melting_point": 2023,
+        "density": 11.72,
+        "electronegativity": 1.3,
+        "ionization_energy": 587,
+        "atomic_radius": 180,
+        "electron_configuration": "[Rn] 6d2 7s2"
+    },
+    {
+        "symbol": "Pa",
+        "name": "Protactinium",
+        "atomic_number": 91,
+        "atomic_mass": 231.04,
+        "boiling_point": 4300,
+        "melting_point": 1841,
+        "density": 15.37,
+        "electronegativity": 1.5,
+        "ionization_energy": 568,
+        "atomic_radius": 180,
+        "electron_configuration": "[Rn] 5f2 6d1 7s2"
+    },
+    {
+        "symbol": "U",
+        "name": "Uranium",
+        "atomic_number": 92,
+        "atomic_mass": 238.03,
+        "boiling_point": 4404,
+        "melting_point": 1405.3,
+        "density": 19.05,
+        "electronegativity": 1.38,
+        "ionization_energy": 597,
+        "atomic_radius": 175,
+        "electron_configuration": "[Rn] 5f3 6d1 7s2"
+    },
+    {
+        "symbol": "Np",
+        "name": "Neptunium",
+        "atomic_number": 93,
+        "atomic_mass": 237,
+        "boiling_point": 4273,
+        "melting_point": 917,
+        "density": 20.45,
+        "electronegativity": 1.36,
+        "ionization_energy": 605,
+        "atomic_radius": 175,
+        "electron_configuration": "[Rn] 5f4 6d1 7s2"
+    },
+    {
+        "symbol": "Pu",
+        "name": "Plutonium",
+        "atomic_number": 94,
+        "atomic_mass": 244,
+        "boiling_point": 3501,
+        "melting_point": 912.5,
+        "density": 19.84,
+        "electronegativity": 1.28,
+        "ionization_energy": 585,
+        "atomic_radius": 175,
+        "electron_configuration": "[Rn] 5f6 7s2"
+    },
+    {
+        "symbol": "Am",
+        "name": "Americium",
+        "atomic_number": 95,
+        "atomic_mass": 243,
+        "boiling_point": 2880,
+        "melting_point": 1449,
+        "density": 13.69,
+        "electronegativity": 1.3,
+        "ionization_energy": 578,
+        "atomic_radius": 175,
+        "electron_configuration": "[Rn] 5f7 7s2"
+    },
+    {
+        "symbol": "Cm",
+        "name": "Curium",
+        "atomic_number": 96,
+        "atomic_mass": 247,
+        "boiling_point": 3383,
+        "melting_point": 1613,
+        "density": 13.51,
+        "electronegativity": 1.3,
+        "ionization_energy": 581,
+        "atomic_radius": 175,
+        "electron_configuration": "[Rn] 5f7 6d1 7s2"
+    },
+    {
+        "symbol": "Bk",
+        "name": "Berkelium",
+        "atomic_number": 97,
+        "atomic_mass": 247,
+        "boiling_point": 2900,
+        "melting_point": 1259,
+        "density": 14.78,
+        "electronegativity": 1.3,
+        "ionization_energy": 601,
+        "atomic_radius": 175,
+        "electron_configuration": "[Rn] 5f9 7s2"
+    },
+    {
+        "symbol": "Cf",
+        "name": "Californium",
+        "atomic_number": 98,
+        "atomic_mass": 251,
+        "boiling_point": 1743,
+        "melting_point": 1173,
+        "density": 15.1,
+        "electronegativity": 1.3,
+        "ionization_energy": 608,
+        "atomic_radius": 175,
+        "electron_configuration": "[Rn] 5f10 7s2"
+    },
+    {
+        "symbol": "Es",
+        "name": "Einsteinium",
+        "atomic_number": 99,
+        "atomic_mass": 252,
+        "boiling_point": 1269,
+        "melting_point": 1133,
+        "density": 8.84,
+        "electronegativity": 1.3,
+        "ionization_energy": 619,
+        "atomic_radius": 175,
+        "electron_configuration": "[Rn] 5f11 7s2"
+    },
+    {
+        "symbol": "Fm",
+        "name": "Fermium",
+        "atomic_number": 100,
+        "atomic_mass": 257,
+        "boiling_point": null,
+        "melting_point": 1800,
+        "density": null,
+        "electronegativity": 1.3,
+        "ionization_energy": 627,
+        "atomic_radius": 175,
+        "electron_configuration": "[Rn] 5f12 7s2"
+    },
+    {
+        "symbol": "Md",
+        "name": "Mendelevium",
+        "atomic_number": 101,
+        "atomic_mass": 258,
+        "boiling_point": null,
+        "melting_point": 1100,
+        "density": null,
+        "electronegativity": 1.3,
+        "ionization_energy": 635,
+        "atomic_radius": 175,
+        "electron_configuration": "[Rn] 5f13 7s2"
+    },
+    {
+        "symbol": "No",
+        "name": "Nobelium",
+        "atomic_number": 102,
+        "atomic_mass": 259,
+        "boiling_point": null,
+        "melting_point": 1100,
+        "density": null,
+        "electronegativity": 1.3,
+        "ionization_energy": 642,
+        "atomic_radius": 175,
+        "electron_configuration": "[Rn] 5f14 7s2"
+    },
+    {
+        "symbol": "Lr",
+        "name": "Lawrencium",
+        "atomic_number": 103,
+        "atomic_mass": 262,
+        "boiling_point": null,
+        "melting_point": 1900,
+        "density": null,
+        "electronegativity": 1.3,
+        "ionization_energy": 470,
+        "atomic_radius": 175,
+        "electron_configuration": "[Rn] 5f14 7s2 7p1"
+    },
+    {
+        "symbol": "Rf",
+        "name": "Rutherfordium",
+        "atomic_number": 104,
+        "atomic_mass": 267,
+        "boiling_point": null,
+        "melting_point": null,
+        "density": null,
+        "electronegativity": null,
+        "ionization_energy": 580,
+        "atomic_radius": null,
+        "electron_configuration": "[Rn] 5f14 6d2 7s2"
+    },
+    {
+        "symbol": "Db",
+        "name": "Dubnium",
+        "atomic_number": 105,
+        "atomic_mass": 268,
+        "boiling_point": null,
+        "melting_point": null,
+        "density": null,
+        "electronegativity": null,
+        "ionization_energy": null,
+        "atomic_radius": null,
+        "electron_configuration": "[Rn] 5f14 6d3 7s2"
+    },
+    {
+        "symbol": "Sg",
+        "name": "Seaborgium",
+        "atomic_number": 106,
+        "atomic_mass": 271,
+        "boiling_point": null,
+        "melting_point": null,
+        "density": null,
+        "electronegativity": null,
+        "ionization_energy": null,
+        "atomic_radius": null,
+        "electron_configuration": "[Rn] 5f14 6d4 7s2"
+    },
+    {
+        "symbol": "Bh",
+        "name": "Bohrium",
+        "atomic_number": 107,
+        "atomic_mass": 272,
+        "boiling_point": null,
+        "melting_point": null,
+        "density": null,
+        "electronegativity": null,
+        "ionization_energy": null,
+        "atomic_radius": null,
+        "electron_configuration": "[Rn] 5f14 6d5 7s2"
+    },
+    {
+        "symbol": "Hs",
+        "name": "Hassium",
+        "atomic_number": 108,
+        "atomic_mass": 270,
+        "boiling_point": null,
+        "melting_point": null,
+        "density": null,
+        "electronegativity": null,
+        "ionization_energy": null,
+        "atomic_radius": null,
+        "electron_configuration": "[Rn] 5f14 6d6 7s2"
+    },
+    {
+        "symbol": "Mt",
+        "name": "Meitnerium",
+        "atomic_number": 109,
+        "atomic_mass": 276,
+        "boiling_point": null,
+        "melting_point": null,
+        "density": null,
+        "electronegativity": null,
+        "ionization_energy": null,
+        "atomic_radius": null,
+        "electron_configuration": "[Rn] 5f14 6d7 7s2"
+    },
+    {
+        "symbol": "Ds",
+        "name": "Darmstadtium",
+        "atomic_number": 110,
+        "atomic_mass": 281,
+        "boiling_point": null,
+        "melting_point": null,
+        "density": null,
+        "electronegativity": null,
+        "ionization_energy": null,
+        "atomic_radius": null,
+        "electron_configuration": "[Rn] 5f14 6d9 7s1"
+    },
+    {
+        "symbol": "Rg",
+        "name": "Roentgenium",
+        "atomic_number": 111,
+        "atomic_mass": 280,
+        "boiling_point": null,
+        "melting_point": null,
+        "density": null,
+        "electronegativity": null,
+        "ionization_energy": null,
+        "atomic_radius": null,
+        "electron_configuration": "[Rn] 5f14 6d10 7s1"
+    },
+    {
+        "symbol": "Cn",
+        "name": "Copernicium",
+        "atomic_number": 112,
+        "atomic_mass": 285,
+        "boiling_point": null,
+        "melting_point": null,
+        "density": null,
+        "electronegativity": null,
+        "ionization_energy": null,
+        "atomic_radius": null,
+        "electron_configuration": "[Rn] 5f14 6d10 7s2"
+    },
+    {
+        "symbol": "Nh",
+        "name": "Nihonium",
+        "atomic_number": 113,
+        "atomic_mass": 286,
+        "boiling_point": null,
+        "melting_point": null,
+        "density": null,
+        "electronegativity": null,
+        "ionization_energy": null,
+        "atomic_radius": null,
+        "electron_configuration": "[Rn] 5f14 6d10 7s2 7p1"
+    },
+    {
+        "symbol": "Fl",
+        "name": "Flerovium",
+        "atomic_number": 114,
+        "atomic_mass": 289,
+        "boiling_point": null,
+        "melting_point": null,
+        "density": null,
+        "electronegativity": null,
+        "ionization_energy": null,
+        "atomic_radius": null,
+        "electron_configuration": "[Rn] 5f14 6d10 7s2 7p2"
+    },
+    {
+        "symbol": "Mc",
+        "name": "Moscovium",
+        "atomic_number": 115,
+        "atomic_mass": 290,
+        "boiling_point": null,
+        "melting_point": null,
+        "density": null,
+        "electronegativity": null,
+        "ionization_energy": null,
+        "atomic_radius": null,
+        "electron_configuration": "[Rn] 5f14 6d10 7s2 7p3"
+    },
+    {
+        "symbol": "Lv",
+        "name": "Livermorium",
+        "atomic_number": 116,
+        "atomic_mass": 293,
+        "boiling_point": null,
+        "melting_point": null,
+        "density": null,
+        "electronegativity": null,
+        "ionization_energy": null,
+        "atomic_radius": null,
+        "electron_configuration": "[Rn] 5f14 6d10 7s2 7p4"
+    },
+    {
+        "symbol": "Ts",
+        "name": "Tennessine",
+        "atomic_number": 117,
+        "atomic_mass": 294,
+        "boiling_point": null,
+        "melting_point": null,
+        "density": null,
+        "electronegativity": null,
+        "ionization_energy": null,
+        "atomic_radius": null,
+        "electron_configuration": "[Rn] 5f14 6d10 7s2 7p5"
+    },
+    {
+        "symbol": "Og",
+        "name": "Oganesson",
+        "atomic_number": 118,
+        "atomic_mass": 294,
+        "boiling_point": null,
+        "melting_point": null,
+        "density": null,
+        "electronegativity": null,
+        "ionization_energy": null,
+        "atomic_radius": null,
+        "electron_configuration": "[Rn] 5f14 6d10 7s2 7p6"
+    }
+        ];
+
+        const calculationElements = {
+            H: 1.008, He: 4.0026, Li: 6.94, Be: 9.0122, B: 10.81, C: 12.011,
+            N: 14.007, O: 15.999, F: 18.998, Ne: 20.180, Na: 22.990, Mg: 24.305,
+            Al: 26.982, Si: 28.085, P: 30.974, S: 32.06, Cl: 35.45, Ar: 39.948,
+            K: 39.098, Ca: 40.078, Sc: 44.956, Ti: 47.867, V: 50.942, Cr: 51.996,
+            Mn: 54.938, Fe: 55.845, Co: 58.933, Ni: 58.693, Cu: 63.546, Zn: 65.38,
+            Ga: 69.723, Ge: 72.630, As: 74.922, Se: 78.971, Br: 79.904, Kr: 83.798,
+            Rb: 85.468, Sr: 87.62, Y: 88.906, Zr: 91.224, Nb: 92.906, Mo: 95.95,
+            Tc: 98, Ru: 101.07, Rh: 102.91, Pd: 106.42, Ag: 107.87, Cd: 112.41,
+            In: 114.82, Sn: 118.71, Sb: 121.76, Te: 127.60, I: 126.90, Xe: 131.29,
+            Cs: 132.91, Ba: 137.33, La: 138.91, Ce: 140.12, Pr: 140.91, Nd: 144.24,
+            Pm: 145, Sm: 150.36, Eu: 151.96, Gd: 157.25, Tb: 158.93, Dy: 162.50,
+            Ho: 164.93, Er: 167.26, Tm: 168.93, Yb: 173.05, Lu: 174.97, Hf: 178.49,
+            Ta: 180.95, W: 183.84, Re: 186.21, Os: 190.23, Ir: 192.22, Pt: 195.08,
+            Au: 196.97, Hg: 200.59, Tl: 204.38, Pb: 207.2, Bi: 208.98, Po: 209,
+            At: 210, Rn: 222, Fr: 223, Ra: 226, Ac: 227, Th: 232.04, Pa: 231.04,
+            U: 238.03, Np: 237, Pu: 244, Am: 243, Cm: 247, Bk: 247, Cf: 251,
+            Es: 252, Fm: 257, Md: 258, No: 259, Lr: 262, Rf: 267, Db: 268,
+            Sg: 271, Bh: 272, Hs: 270, Mt: 276, Ds: 281, Rg: 280, Cn: 285,
+            Nh: 286, Fl: 289, Mc: 290, Lv: 293, Ts: 294, Og: 294
+          };
+
+        function promptSearch(type) {
+            let input = prompt(`Enter element ${type === 'symbol' ? 'symbol' : type === 'name' ? 'name' : 'atomic number'}:`);
+
+            if (input) {
+                let result = elements.find(el => 
+                    (type === 'symbol' && el.symbol.toLowerCase() === input.toLowerCase()) ||
+                    (type === 'name' && el.name.toLowerCase() === input.toLowerCase()) ||
+                    (type === 'number' && el.atomic_number === parseInt(input))
+                );
+
+                if (result) {
+                    document.getElementById('output').innerHTML = `
+                        <strong>Element Found:</strong><br>
+                        <strong>Name:</strong> ${result.name}<br>
+                        <strong>Symbol:</strong> ${result.symbol}<br>
+                        <strong>Atomic Number:</strong> ${result.atomic_number}<br>
+                        <strong>Atomic Mass:</strong> ${result.atomic_mass}<br>
+                        <strong>Boiling Point:</strong> ${result.boiling_point} K<br>
+                        <strong>Melting Point:</strong> ${result.melting_point} K<br>
+                        <strong>Density:</strong> ${result.density} g/cm³<br>
+                        <strong>Electronegativity:</strong> ${result.electronegativity !== null ? result.electronegativity : 'N/A'}<br>
+                        <strong>Ionization Energy:</strong> ${result.ionization_energy} kJ/mol<br>
+                        <strong>Atomic Radius:</strong> ${result.atomic_radius} pm<br>
+                        <strong>Electron Configuration:</strong> ${result.electron_configuration}<br>
+                    `;
+                } else {
+                    document.getElementById('output').innerHTML = 'Element not found';
+                }
+            }
+        }
+
+        function parseFormula(formula) {
+            let regex = /([A-Z][a-z]?)(\d*)/g;
+            let composition = {};
+            let match;
+            while ((match = regex.exec(formula)) !== null) {
+                let element = match[1];
+                let count = match[2] ? parseInt(match[2]) : 1;
+                if (calculationElements[element]) {
+                    composition[element] = (composition[element] || 0) + count;
+                } else {
+                    return null;
+                }
+            }
+            return composition;
+        }
+
+        function calculateMolecularMass() {
+            let formula = prompt("Enter chemical formula (e.g., H2O):");
+            let composition = parseFormula(formula);
+            if (!composition) return alert("Invalid formula");
+            let mass = Object.entries(composition).reduce((sum, [el, count]) => sum + calculationElements[el] * count, 0);
+            document.getElementById('output').innerText = `Molecular Mass of ${formula}: ${mass.toFixed(2)} g/mol`;
+        }
+
+        function calculateMolesFromMass() {
+            let mass = parseFloat(prompt("Enter mass in grams:"));
+            let formula = prompt("Enter chemical formula:");
+            let composition = parseFormula(formula);
+            if (!composition || isNaN(mass)) return alert("Invalid input");
+            let molarMass = Object.entries(composition).reduce((sum, [el, count]) => sum + calculationElements[el] * count, 0);
+            document.getElementById('output').innerText = `${mass}g of ${formula} = ${(mass / molarMass).toFixed(4)} moles`;
+        }
+
+        function calculateMassFromMoles() {
+            let moles = parseFloat(prompt("Enter number of moles:"));
+            let formula = prompt("Enter chemical formula:");
+            let composition = parseFormula(formula);
+            if (!composition || isNaN(moles)) return alert("Invalid input");
+            let molarMass = Object.entries(composition).reduce((sum, [el, count]) => sum + calculationElements[el] * count, 0);
+            document.getElementById('output').innerText = `${moles} moles of ${formula} = ${(moles * molarMass).toFixed(2)}g`;
+        }
+
+        function calculatePercentageComp() {
+            let formula = prompt("Enter chemical formula:");
+            let composition = parseFormula(formula);
+            if (!composition) return alert("Invalid formula");
+            let molarMass = Object.entries(composition).reduce((sum, [el, count]) => sum + calculationElements[el] * count, 0);
+            let output = `Percentage Composition of ${formula}:\n`;
+            Object.entries(composition).forEach(([el, count]) => {
+                let percent = ((calculationElements[el] * count) / molarMass) * 100;
+                output += `${el}: ${percent.toFixed(2)}%\n`;
+            });
+            document.getElementById('output').innerText = output;
+        }
+
+        function showProperty(property) {
+            let symbol = prompt("Enter the element symbol:");
+            let element = elements.find(el => el.symbol.toLowerCase() === symbol.toLowerCase());
+            if (element) {
+                document.getElementById("output").innerHTML = 
+                    `<strong>${element.name} (${element.symbol})</strong><br>
+                     ${formatPropertyName(property)}: ${element[property] || "Not available"}`;
+            } else {
+                document.getElementById("output").innerHTML = "Element not found!";
+            }
+        }
+
+        function plotGraph(property) {
+            let labels = [];
+            let values = [];
+
+            // Get data for all elements
+            elements.forEach(el => {
+                labels.push(el.name); // Element names on X-axis
+                values.push(el[property] || 0); // Selected property values on Y-axis
+            });
+
+            // Destroy existing chart if it exists
+            if (window.myChart) {
+                window.myChart.destroy();
+            }
+
+            // Get the canvas context
+            let ctx = document.getElementById("elementChart").getContext("2d");
+
+            // Create the chart
+            window.myChart = new Chart(ctx, {
+                type: "bar",  // Change to 'line' for a line chart
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: `${formatPropertyName(property)} of Elements`,
+                        data: values,
+                        backgroundColor: "rgba(255, 193, 7, 0.6)",
+                        borderColor: "rgba(255, 193, 7, 1)",
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        x: {
+                            ticks: {
+                                display: false // Hide element names if too many
+                            }
+                        },
+                        y: {
+                            beginAtZero: true
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: "white" // Make labels visible on dark backgrounds
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Helper function to format property names for display
+        function formatPropertyName(property) {
+            return property.replace("_", " ").replace(/\b\w/g, c => c.toUpperCase());
+        }
+
+        function returnToHome() {
+            document.getElementById('output').innerHTML = "";
+            if (window.myChart) {
+                window.myChart.destroy();
+            }
+        }
+
+        function exit() {
+            document.getElementById('output').innerHTML = "Thank you for using the Periodic Table Calculator!";
+        }
+    </script>
+</body>
+</html>
