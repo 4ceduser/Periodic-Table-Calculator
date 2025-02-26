@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Periodic Table Calculator</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap');
+
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    color: #ededed;
+    background: #292727;
+    background-image: url("https://i.postimg.cc/bY0jJVTD/pixelcut-export.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 10%;
+    background: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+
+.logo {
+    width: 70px;
+    height: 70px;
+    font-size: 20px;
+    color: #ededed;
+    text-decoration: none;
+    font-weight: 600;
+    mix-blend-mode: color-dodge;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: translateY(-50px);
+    animation: slideDown 1s ease forwards;
+    animation-delay: 0.1s;
+}
+
+.logo img {
+    width: 180%;
+    height: 180%;
+}
+
+.nav-buttons {
+    position: absolute;
+    top: 20px;
+    right: 10%;
+}
+
+.nav-buttons .btn-box {
+    display: inline-block;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #ffcc00, #ff9900);
+    color: #000;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 40px;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.3s ease, color 0.3s ease;
+    box-shadow: 0 0 10px gold;
+    border: 2px solid gold;
+    opacity: 0;
+    transform: translateY(-50px);
+    animation: slideDown 1s ease forwards;
+    animation-delay: 1s;
+}
+
+.nav-buttons .btn-box:hover {
+    color: #000;
+    background: gold;
+    box-shadow: 0 0 20px 5px rgba(225,215,0,0.8);
+    transform: translateY(-3px);
+}
+
+.nav-buttons .btn-box:active {
+    transform: translateY(0);
+    box-shadow: 0 0 15px 3px rgba(255, 215, 0, 0.6);
+}
+
+.home-content {
+    max-width: 600px;
+    background: rgba(0, 0, 0, 0);
+    padding: 20px;
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+}
+
+.home-content h1 {
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 1.2;
+    font-family: 'Orbitron', sans-serif;
+    opacity: 0;
+    transform: translateY(-50px);
+    animation: slideDown 1s ease forwards;
+    animation-delay: 0.2s;
+}
+
+.home-content h3 {
+    font-size: 32px;
+    font-weight: 700;
+    color: rgb(244, 192, 6);
+    line-height: 1.2;
+    font-family: 'Orbitron', sans-serif;
+    opacity: 0;
+    transform: translateY(-50px);
+    animation: slideDown 1s ease forwards;
+    animation-delay: 0.4s;
+}
+
+.home-content p {
+    color: white;
+    font-size: 16px;
+    line-height: 1.6;
+    opacity: 0;
+    transform: translateY(-50px);
+    animation: slideDown 1s ease forwards;
+    animation-delay: 0.6s;
+}
+
+.btn-box {
+    margin-top: 30px;
+    display: inline-block;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #ffcc00, #ff9900);
+    color: #000;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 40px;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.3s ease, color 0.3s ease;
+    box-shadow: 0 0 10px gold;
+    border: 2px solid gold;
+    opacity: 0;
+    transform: translateY(-50px);
+    animation: slideDown 1s ease forwards;
+    animation-delay: 1s;
+}
+
+.btn-box:hover {
+    color: #000;
+    background: gold;
+    box-shadow: 0 0 20px 5px rgba(225,215,0,0.8);
+    transform: translateY(-3px);
+}
+
+.btn-box:active {
+    transform: translateY(0);
+    box-shadow: 0 0 15px 3px rgba(255, 215, 0, 0.6);
+}
+
+.home {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10%;
+}
+
+@keyframes slideDown {
+    0% { opacity: 0; transform: translateY(-50px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .header {
+        padding: 20px 5%;
+    }
+
+    .logo {
+        width: 50px;
+        height: 50px;
+    }
+
+    .logo img {
+        width: 150%;
+        height: 150%;
+    }
+
+    .nav-buttons {
+        right: 5%;
+    }
+
+    .nav-buttons .btn-box {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+
+    .home-content {
+        max-width: 90%;
+        padding: 15px;
+    }
+
+    .home-content h1 {
+        font-size: 40px;
+    }
+
+    .home-content h3 {
+        font-size: 24px;
+    }
+
+    .home-content p {
+        font-size: 14px;
+    }
+
+    .btn-box {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+
+    .home {
+        padding: 0 5%;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: 15px 5%;
+    }
+
+    .logo {
+        width: 40px;
+        height: 40px;
+    }
+
+    .logo img {
+        width: 120%;
+        height: 120%;
+    }
+
+    .nav-buttons .btn-box {
+        padding: 8px 16px;
+        font-size: 12px;
+    }
+
+    .home-content h1 {
+        font-size: 32px;
+    }
+
+    .home-content h3 {
+        font-size: 20px;
+    }
+
+    .home-content p {
+        font-size: 12px;
+    }
+
+    .btn-box {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+
+    .home {
+        padding: 0 5%;
+    }
+}
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a class="logo">
+            <img src="https://i.postimg.cc/1zw7DQJh/a29dd9e4-5b07-4656-93c3-aa4438504927-modified.png">
+        </a>
+        <div class="nav-buttons">
+            <a href="login.html" class="btn-box">Sign In</a> <!-- Changed to Sign In -->
+        </div>
+    </header>
+
+    <section class="home">
+        <div class="home-content">
+            <h1>Explore..!</h1>
+            <h3>Periodic Table Elements</h3>
+            <h3>in a new way!</h3>
+            <p>Welcome to the <strong>Periodic Table Calculator</strong>, your ultimate tool for exploring all chemical elements! 
+                This interactive platform allows you to perform a variety of tasks, from searching for elements to performing advanced chemical calculations. 
+                Whether you're a student, educator, or chemistry enthusiast, this tool is designed to make your work easier and more efficient.
+            </p>
+            <a href="page2.html" class="btn-box">Explore 🔬</a>
+        </div>
+    </section>
+</body>
+</html>
