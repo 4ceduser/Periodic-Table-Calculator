@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #e0f7fa;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 40px 0;
+            background-color: #00796b;
+            color: white;
+            margin-bottom: 30px;
+            border-radius: 10px;
+        }
+
+        .team-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .team-member {
+            display: flex;
+            align-items: center;
+            margin-bottom: 40px;
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .team-member.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .team-leader {
+            border: 3px solid gold;
+            box-shadow: 0 4px 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .member-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #004d40;
+        }
+
+        .member-info {
+            flex: 1;
+            padding: 0 20px;
+            display: block; /* Changed from 'none' to 'block' */
+        }
+
+        .member-name {
+            color: #004d40;
+            margin-bottom: 5px;
+            font-size: 1.4em;
+        }
+
+        .member-role {
+            color: #00796b;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        .member-description {
+            color: #666;
+            line-height: 1.6;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .team-member {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .team-member.reverse {
+                flex-direction: column;
+            }
+
+            .member-image {
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Our Amazing Team</h1>
+        <p>Meet the talented individuals behind our success</p>
+    </div>
+
+    <div class="team-container">
+        <div class="team-member reverse team-leader">
+            <img src="./images/akshai.png" alt="Team Leader" class="member-image">
+            <div class="member-info">
+                <h2 class="member-name">Maripi Akshai Naidu</h2>
+                <p class="member-role">Team Leader and Backend Developer</p>
+                <p class="member-description">I am Akshal Naidu, Leading the team with innovation and precision! As the backend developer of our Project, I ensured seamless functionality and robust performance.🚀🔬 #TeamLeader #BackendDeveloper #Periodic TableCalculator</p>
+            </div>
+        </div>
+
+        <div class="team-member">
+            <img src="./images/Ansh.jpg" alt="Team Member" class="member-image">
+            <div class="member-info">
+                <h2 class="member-name">Ansh Tyagi</h2>
+                <p class="member-role">Front End Developer</p>
+                <p class="member-description">I am Ansh Tyagi, a passionate and detail-oriented creator who loves blending science with technology. I designed the first page of the Project, reflecting my vision for intuitive and impactful solutions.</p>
+            </div>
+        </div>
+
+        <div class="team-member reverse">
+            <img src="./images/Naveen.jpeg" alt="Team Member" class="member-image">
+            <div class="member-info">
+                <h2 class="member-name">Naveen</h2>
+                <p class="member-role">Errors Checker</p>
+                <p class="member-description">I am Naveen, a dedicated developer who worked on the Periodic Table Calculator project. I take pride in identifying errors and making essential code modifications to ensure the project's success and functionality</p>
+            </div>
+        </div>
+
+        <div class="team-member">
+            <img src="./images/prachi.jpeg" alt="Team Member" class="member-image">
+            <div class="member-info">
+                <h2 class="member-name">Prachi Garg</h2>
+                <p class="member-role">Speaker and Designer</p>
+                <p class="member-description">I am Prachi, and I contributed to my project by providing creative ideas and design suggestions. My inputs helped shape the overall structure and user experience.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
