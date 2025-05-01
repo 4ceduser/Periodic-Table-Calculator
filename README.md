@@ -2,7 +2,7 @@
 
 An interactive and educational web app built using **HTML, CSS, and JavaScript**, designed to help students and learners explore elements, calculate chemical properties....etc, and understand the periodic table in a fun and engaging way.
 
-[🌐 Live Demo](https://4ceduser.github.io/Periodic-Table-Calculator/)
+[🌐 Live Demo](https://akshainaidu-dev.github.io/Periodic-Table-Calculator/)
 
 ---
 
